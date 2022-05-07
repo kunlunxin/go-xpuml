@@ -1,0 +1,75 @@
+# Copyright (c) 2022, KUNLUNXIN CORPORATION.  All rights reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+---
+GENERATOR:
+  PackageName: xpuml
+  PackageDescription: "Package XPUML bindings"
+  PackageLicense: |-
+    Copyright (c) 2022, KUNLUNXIN CORPORATION. All rights reserved.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+  Includes: ["xpuml.h"]
+  FlagGroups:
+    - {name: "LDFLAGS", flags: ["-Wl,--unresolved-symbols=ignore-in-object-files"]}
+    - {name: "CFLAGS", flags: ["-DXPUML_NO_UNVERSIONED_FUNC_DEFS=1"]}
+PARSER:
+  SourcesPaths: ["xpuml.h"]
+  Defines:
+    XPUML_NO_UNVERSIONED_FUNC_DEFS: 1
+TRANSLATOR:
+  ConstRules:
+    defines: eval
+    enum: eval
+  PtrTips:
+    function:
+      - {target: "^xpuml", default: "sref"}
+  MemTips:
+    - {target: "^xpuml", default: "raw"}
+  Rules:
+    const:
+      - {action: accept, from: "^XPUML_"}
+      - {action: accept, from: "^xpuml"}
+      - {action: replace, from: "^XPUML_"}
+      - {action: replace, from: "^xpuml"}
+      - {action: replace, from: "_t$"}
+      - {transform: export}
+    type:
+      - {action: accept, from: "^xpuml"}
+      - {action: replace, from: "^xpuml"}
+      - {action: replace, from: "_t$"}
+      - {transform: export}
+    function:
+      - {action: accept, from: "^xpuml"}
+      - {action: replace, from: "^xpumlInit$", to: "xpumlInit_v1"}
+      - {action: replace, from: "^xpumlDeviceGetMinorNumber$", to: "xpumlDeviceGetMinorNumber_v1"}
+      - {action: replace, from: "^xpumlDeviceGetPciInfo$", to: "xpumlDeviceGetPciInfo_v1"}
+      - {action: replace, from: "^xpumlDeviceGetCount$", to: "xpumlDeviceGetCount_v1"}
+      - {action: replace, from: "^xpumlDeviceGetHandleByIndex$", to: "xpumlDeviceGetHandleByIndex_v1"}
+      - {action: replace, from: "^xpumlDeviceGetAttributes$", to: "xpumlDeviceGetAttributes_v1"}
+      - {action: replace, from: "^xpumlDeviceGetState$", to: "xpumlDeviceGetState_v1"}
+      - {action: replace, from: "^xpumlDeviceGetComputeRunningProcesses$", to: "xpumlDeviceGetComputeRunningProcesses_v1"}
+      - {action: replace, from: "^xpumlDeviceGetHostVxpuMode$", to: "xpumlDeviceGetHostVxpuMode_v1"}
+      - {action: replace, from: "^xpumlDeviceSetSriovVfNum$", to: "xpumlDeviceSetSriovVfNum_v1"}
+      - {transform: unexport}
