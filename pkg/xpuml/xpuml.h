@@ -1741,6 +1741,7 @@ xpumlReturn_t DECLDIR xpumlDeviceGetUtilizationRates(xpumlDevice_t device, xpuml
  */
 //xpumlReturn_t DECLDIR xpumlDeviceGetDecoderUtilization(xpumlDevice_t device, unsigned int *utilization, unsigned int *samplingPeriodUs);
 
+#define XPUML_DEVICE_MAX_PROCESS_COUNT 100 // the max count of processes which user can query.
 /**
  * Get information about processes with a compute context on a device
  *

@@ -20,7 +20,7 @@ import (
 	"fmt"
 	"log"
 
-	"kunlun-xre/go-xpuml/pkg/xpuml"
+	"github.com/kunlunxin/go-xpuml/pkg/xpuml"
 )
 
 func main() {
@@ -59,5 +59,8 @@ func main() {
 		}
 
 		fmt.Printf("utilization rates of device at index %d: %+v\n", i, utilization)
+
+        ProcessInfo, _:= device.GetComputeRunningProcesses()
+		fmt.Printf("ProcessInfo of device %d: %+v\n", i, ProcessInfo)
 	}
 }

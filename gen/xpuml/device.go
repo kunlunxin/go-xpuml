@@ -75,7 +75,7 @@ func (Device Device) GetUtilizationRates() (Utilization, Return) {
 // xpuml.DeviceGetComputeRunningProcesses()
 func DeviceGetComputeRunningProcesses(Device Device) ([]ProcessInfo, Return) {
 	var Infos []ProcessInfo  // This is the v2 version of process info data structure
-	var InfoCount uint32 = 1 // Will be reduced upon returning
+	var InfoCount uint32 = DEVICE_MAX_PROCESS_COUNT // Will be reduced upon returning
 	var ret Return           // Will be changed upon returning
 	for {
 		Infos = make([]ProcessInfo, InfoCount)
