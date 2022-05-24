@@ -1,11 +1,9 @@
 # Go Bindings for the XPU Management Library (XPUML)
 
-
 ## Quick Start
 
-import 该库后，调用 xpuml.init() 即可
-注意运行时需要链接 libxpuml.so
-可以参考 examples/devices/main.go 实现了调用 xpuml 查看当前机器上昆仑卡的 Memory 信息的功能
+导入 xpuml package 后调用`xpuml.init()`即可，可参考`examples/devices/main.go`，该示例实现了调用xpuml接口查看昆仑设备内存信息的功能(注意运行时需要链接`libxpuml.so`)。
+
 输出类似：
 
 ```console
@@ -18,12 +16,11 @@ Memory info of device at index 3: {PageSizeGlobalMemory:131072 TotalGlobalMemory
 
 ## Code Structure
 
-pkg 目录为最终的 package
-pkg/dl 负责在运行时链接 libxpuml.so，
-gen/xpuml/xpuml.yml 为 c-for-go 的配置文件，c-for-go 基于 xpuml.h 自动生成了一些函数接口，
-gen/xpuml/ 下的文件，是基于这些自动生成的函数接口，构造的更符合最终用户使用习惯的调用接口
-gen/xpuml/init.go 负责初始化和接口的版本管理
-
+- `pkg`目录为最终的package产出。
+- `pkg/dl`负责在运行时链接libxpuml.so。
+- `gen/xpuml/xpuml.yml`为 c-for-go 的配置文件，c-for-go 基于 xpuml.h 自动生成了一些函数接口。
+- `gen/xpuml/`下的文件，是基于这些自动生成的函数接口，构造的更符合最终用户使用习惯的调用接口。
+- `gen/xpuml/init.go`负责初始化和接口的版本管理。
 
 ## How To Contribute
 
@@ -44,8 +41,11 @@ $ pre-commit install .pre-commit-config.yaml
 
 ```console
 $ make
-# 注意编译后在 gen/xpuml 目录下会产生一些自动生成的文件，这些是 c-for-go 根据 xpuml.h 产生的 func wrapper,
-# 这些自动生成文件以外的 go 文件，是人工地基于这些文件，编写的更符合使用者习惯的函数接口，例如可以参考 gen/xpuml/device.go
+```
+
+注意编译后在`gen/xpuml`目录下会产生一些自动生成的文件，这些是 c-for-go 根据 xpuml.h 产生的 func wrapper，这些自动生成文件以外的 go 文件，是人工地基于这些文件，编写的更符合使用者习惯的函数接口(可参考`gen/xpuml/device.go`)。
+
+```console
 Untracked files:
   (use "git add <file>..." to include in what will be committed)
 
@@ -57,7 +57,7 @@ Untracked files:
         gen/xpuml/xpuml.go
 ```
 
-注意编译阶段不需要链接 libxpuml.so 库, 但后续运行阶段需要。
+>注意编译阶段不需要链接 libxpuml.so 库, 但后续运行阶段需要。
 
 4. 测试
 
