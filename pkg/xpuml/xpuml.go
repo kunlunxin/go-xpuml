@@ -25,10 +25,7 @@ package xpuml
 #include "cgo_helpers.h"
 */
 import "C"
-import (
-	"runtime"
-	"unsafe"
-)
+import "unsafe"
 
 // xpumlInit_v1 function as declared in xpuml/xpuml.h
 func xpumlInit_v1() Return {
@@ -46,200 +43,163 @@ func xpumlShutdown() Return {
 
 // xpumlErrorString function as declared in xpuml/xpuml.h
 func xpumlErrorString(Result Return) string {
-	cResult, cResultAllocMap := (C.xpumlReturn_t)(Result), cgoAllocsUnknown
+	cResult, _ := (C.xpumlReturn_t)(Result), cgoAllocsUnknown
 	__ret := C.xpumlErrorString(cResult)
-	runtime.KeepAlive(cResultAllocMap)
 	__v := packPCharString(__ret)
 	return __v
 }
 
 // xpumlSystemGetDriverVersion function as declared in xpuml/xpuml.h
 func xpumlSystemGetDriverVersion(Version *byte, Length uint32) Return {
-	cVersion, cVersionAllocMap := (*C.char)(unsafe.Pointer(Version)), cgoAllocsUnknown
-	cLength, cLengthAllocMap := (C.uint)(Length), cgoAllocsUnknown
+	cVersion, _ := (*C.char)(unsafe.Pointer(Version)), cgoAllocsUnknown
+	cLength, _ := (C.uint)(Length), cgoAllocsUnknown
 	__ret := C.xpumlSystemGetDriverVersion(cVersion, cLength)
-	runtime.KeepAlive(cLengthAllocMap)
-	runtime.KeepAlive(cVersionAllocMap)
 	__v := (Return)(__ret)
 	return __v
 }
 
 // xpumlSystemGetXPUMLVersion function as declared in xpuml/xpuml.h
 func xpumlSystemGetXPUMLVersion(Version *byte, Length uint32) Return {
-	cVersion, cVersionAllocMap := (*C.char)(unsafe.Pointer(Version)), cgoAllocsUnknown
-	cLength, cLengthAllocMap := (C.uint)(Length), cgoAllocsUnknown
+	cVersion, _ := (*C.char)(unsafe.Pointer(Version)), cgoAllocsUnknown
+	cLength, _ := (C.uint)(Length), cgoAllocsUnknown
 	__ret := C.xpumlSystemGetXPUMLVersion(cVersion, cLength)
-	runtime.KeepAlive(cLengthAllocMap)
-	runtime.KeepAlive(cVersionAllocMap)
 	__v := (Return)(__ret)
 	return __v
 }
 
 // xpumlDeviceGetCount_v1 function as declared in xpuml/xpuml.h
 func xpumlDeviceGetCount_v1(DeviceCount *uint32) Return {
-	cDeviceCount, cDeviceCountAllocMap := (*C.uint)(unsafe.Pointer(DeviceCount)), cgoAllocsUnknown
+	cDeviceCount, _ := (*C.uint)(unsafe.Pointer(DeviceCount)), cgoAllocsUnknown
 	__ret := C.xpumlDeviceGetCount(cDeviceCount)
-	runtime.KeepAlive(cDeviceCountAllocMap)
 	__v := (Return)(__ret)
 	return __v
 }
 
 // xpumlDeviceGetAttributes_v1 function as declared in xpuml/xpuml.h
 func xpumlDeviceGetAttributes_v1(Device Device, Attributes *DeviceAttributes) Return {
-	cDevice, cDeviceAllocMap := *(*C.xpumlDevice_t)(unsafe.Pointer(&Device)), cgoAllocsUnknown
-	cAttributes, cAttributesAllocMap := (*C.xpumlDeviceAttributes_t)(unsafe.Pointer(Attributes)), cgoAllocsUnknown
+	cDevice, _ := *(*C.xpumlDevice_t)(unsafe.Pointer(&Device)), cgoAllocsUnknown
+	cAttributes, _ := (*C.xpumlDeviceAttributes_t)(unsafe.Pointer(Attributes)), cgoAllocsUnknown
 	__ret := C.xpumlDeviceGetAttributes(cDevice, cAttributes)
-	runtime.KeepAlive(cAttributesAllocMap)
-	runtime.KeepAlive(cDeviceAllocMap)
 	__v := (Return)(__ret)
 	return __v
 }
 
 // xpumlDeviceGetHandleByIndex_v1 function as declared in xpuml/xpuml.h
 func xpumlDeviceGetHandleByIndex_v1(Index uint32, Device *Device) Return {
-	cIndex, cIndexAllocMap := (C.uint)(Index), cgoAllocsUnknown
-	cDevice, cDeviceAllocMap := (*C.xpumlDevice_t)(unsafe.Pointer(Device)), cgoAllocsUnknown
+	cIndex, _ := (C.uint)(Index), cgoAllocsUnknown
+	cDevice, _ := (*C.xpumlDevice_t)(unsafe.Pointer(Device)), cgoAllocsUnknown
 	__ret := C.xpumlDeviceGetHandleByIndex(cIndex, cDevice)
-	runtime.KeepAlive(cDeviceAllocMap)
-	runtime.KeepAlive(cIndexAllocMap)
 	__v := (Return)(__ret)
 	return __v
 }
 
 // xpumlDeviceGetPciInfo_v1 function as declared in xpuml/xpuml.h
 func xpumlDeviceGetPciInfo_v1(Device Device, Pci *PciInfo) Return {
-	cDevice, cDeviceAllocMap := *(*C.xpumlDevice_t)(unsafe.Pointer(&Device)), cgoAllocsUnknown
-	cPci, cPciAllocMap := (*C.xpumlPciInfo_t)(unsafe.Pointer(Pci)), cgoAllocsUnknown
+	cDevice, _ := *(*C.xpumlDevice_t)(unsafe.Pointer(&Device)), cgoAllocsUnknown
+	cPci, _ := (*C.xpumlPciInfo_t)(unsafe.Pointer(Pci)), cgoAllocsUnknown
 	__ret := C.xpumlDeviceGetPciInfo(cDevice, cPci)
-	runtime.KeepAlive(cPciAllocMap)
-	runtime.KeepAlive(cDeviceAllocMap)
 	__v := (Return)(__ret)
 	return __v
 }
 
 // xpumlDeviceGetClockInfo function as declared in xpuml/xpuml.h
 func xpumlDeviceGetClockInfo(Device Device, _type ClockType, Clock *uint32) Return {
-	cDevice, cDeviceAllocMap := *(*C.xpumlDevice_t)(unsafe.Pointer(&Device)), cgoAllocsUnknown
-	c_type, c_typeAllocMap := (C.xpumlClockType_t)(_type), cgoAllocsUnknown
-	cClock, cClockAllocMap := (*C.uint)(unsafe.Pointer(Clock)), cgoAllocsUnknown
+	cDevice, _ := *(*C.xpumlDevice_t)(unsafe.Pointer(&Device)), cgoAllocsUnknown
+	c_type, _ := (C.xpumlClockType_t)(_type), cgoAllocsUnknown
+	cClock, _ := (*C.uint)(unsafe.Pointer(Clock)), cgoAllocsUnknown
 	__ret := C.xpumlDeviceGetClockInfo(cDevice, c_type, cClock)
-	runtime.KeepAlive(cClockAllocMap)
-	runtime.KeepAlive(c_typeAllocMap)
-	runtime.KeepAlive(cDeviceAllocMap)
 	__v := (Return)(__ret)
 	return __v
 }
 
 // xpumlDeviceGetState_v1 function as declared in xpuml/xpuml.h
 func xpumlDeviceGetState_v1(Device Device, State *DeviceState) Return {
-	cDevice, cDeviceAllocMap := *(*C.xpumlDevice_t)(unsafe.Pointer(&Device)), cgoAllocsUnknown
-	cState, cStateAllocMap := (*C.xpumlDeviceState_t)(unsafe.Pointer(State)), cgoAllocsUnknown
+	cDevice, _ := *(*C.xpumlDevice_t)(unsafe.Pointer(&Device)), cgoAllocsUnknown
+	cState, _ := (*C.xpumlDeviceState_t)(unsafe.Pointer(State)), cgoAllocsUnknown
 	__ret := C.xpumlDeviceGetState(cDevice, cState)
-	runtime.KeepAlive(cStateAllocMap)
-	runtime.KeepAlive(cDeviceAllocMap)
 	__v := (Return)(__ret)
 	return __v
 }
 
 // xpumlDeviceGetTemperature function as declared in xpuml/xpuml.h
 func xpumlDeviceGetTemperature(Device Device, SensorType TemperatureSensors, Temp *uint32) Return {
-	cDevice, cDeviceAllocMap := *(*C.xpumlDevice_t)(unsafe.Pointer(&Device)), cgoAllocsUnknown
-	cSensorType, cSensorTypeAllocMap := (C.xpumlTemperatureSensors_t)(SensorType), cgoAllocsUnknown
-	cTemp, cTempAllocMap := (*C.uint)(unsafe.Pointer(Temp)), cgoAllocsUnknown
+	cDevice, _ := *(*C.xpumlDevice_t)(unsafe.Pointer(&Device)), cgoAllocsUnknown
+	cSensorType, _ := (C.xpumlTemperatureSensors_t)(SensorType), cgoAllocsUnknown
+	cTemp, _ := (*C.uint)(unsafe.Pointer(Temp)), cgoAllocsUnknown
 	__ret := C.xpumlDeviceGetTemperature(cDevice, cSensorType, cTemp)
-	runtime.KeepAlive(cTempAllocMap)
-	runtime.KeepAlive(cSensorTypeAllocMap)
-	runtime.KeepAlive(cDeviceAllocMap)
 	__v := (Return)(__ret)
 	return __v
 }
 
 // xpumlDeviceGetPowerUsage function as declared in xpuml/xpuml.h
 func xpumlDeviceGetPowerUsage(Device Device, Power *uint32) Return {
-	cDevice, cDeviceAllocMap := *(*C.xpumlDevice_t)(unsafe.Pointer(&Device)), cgoAllocsUnknown
-	cPower, cPowerAllocMap := (*C.uint)(unsafe.Pointer(Power)), cgoAllocsUnknown
+	cDevice, _ := *(*C.xpumlDevice_t)(unsafe.Pointer(&Device)), cgoAllocsUnknown
+	cPower, _ := (*C.uint)(unsafe.Pointer(Power)), cgoAllocsUnknown
 	__ret := C.xpumlDeviceGetPowerUsage(cDevice, cPower)
-	runtime.KeepAlive(cPowerAllocMap)
-	runtime.KeepAlive(cDeviceAllocMap)
 	__v := (Return)(__ret)
 	return __v
 }
 
 // xpumlDeviceGetMemoryInfo function as declared in xpuml/xpuml.h
 func xpumlDeviceGetMemoryInfo(Device Device, Memory *Memory) Return {
-	cDevice, cDeviceAllocMap := *(*C.xpumlDevice_t)(unsafe.Pointer(&Device)), cgoAllocsUnknown
-	cMemory, cMemoryAllocMap := (*C.xpumlMemory_t)(unsafe.Pointer(Memory)), cgoAllocsUnknown
+	cDevice, _ := *(*C.xpumlDevice_t)(unsafe.Pointer(&Device)), cgoAllocsUnknown
+	cMemory, _ := (*C.xpumlMemory_t)(unsafe.Pointer(Memory)), cgoAllocsUnknown
 	__ret := C.xpumlDeviceGetMemoryInfo(cDevice, cMemory)
-	runtime.KeepAlive(cMemoryAllocMap)
-	runtime.KeepAlive(cDeviceAllocMap)
 	__v := (Return)(__ret)
 	return __v
 }
 
 // xpumlDeviceGetBoardId function as declared in xpuml/xpuml.h
 func xpumlDeviceGetBoardId(Device Device, BoardId *uint32) Return {
-	cDevice, cDeviceAllocMap := *(*C.xpumlDevice_t)(unsafe.Pointer(&Device)), cgoAllocsUnknown
-	cBoardId, cBoardIdAllocMap := (*C.uint)(unsafe.Pointer(BoardId)), cgoAllocsUnknown
+	cDevice, _ := *(*C.xpumlDevice_t)(unsafe.Pointer(&Device)), cgoAllocsUnknown
+	cBoardId, _ := (*C.uint)(unsafe.Pointer(BoardId)), cgoAllocsUnknown
 	__ret := C.xpumlDeviceGetBoardId(cDevice, cBoardId)
-	runtime.KeepAlive(cBoardIdAllocMap)
-	runtime.KeepAlive(cDeviceAllocMap)
 	__v := (Return)(__ret)
 	return __v
 }
 
 // xpumlDeviceGetUtilizationRates function as declared in xpuml/xpuml.h
 func xpumlDeviceGetUtilizationRates(Device Device, Utilization *Utilization) Return {
-	cDevice, cDeviceAllocMap := *(*C.xpumlDevice_t)(unsafe.Pointer(&Device)), cgoAllocsUnknown
-	cUtilization, cUtilizationAllocMap := (*C.xpumlUtilization_t)(unsafe.Pointer(Utilization)), cgoAllocsUnknown
+	cDevice, _ := *(*C.xpumlDevice_t)(unsafe.Pointer(&Device)), cgoAllocsUnknown
+	cUtilization, _ := (*C.xpumlUtilization_t)(unsafe.Pointer(Utilization)), cgoAllocsUnknown
 	__ret := C.xpumlDeviceGetUtilizationRates(cDevice, cUtilization)
-	runtime.KeepAlive(cUtilizationAllocMap)
-	runtime.KeepAlive(cDeviceAllocMap)
 	__v := (Return)(__ret)
 	return __v
 }
 
 // xpumlDeviceGetComputeRunningProcesses_v1 function as declared in xpuml/xpuml.h
 func xpumlDeviceGetComputeRunningProcesses_v1(Device Device, InfoCount *uint32, Infos *ProcessInfo) Return {
-	cDevice, cDeviceAllocMap := *(*C.xpumlDevice_t)(unsafe.Pointer(&Device)), cgoAllocsUnknown
-	cInfoCount, cInfoCountAllocMap := (*C.uint)(unsafe.Pointer(InfoCount)), cgoAllocsUnknown
-	cInfos, cInfosAllocMap := (*C.xpumlProcessInfo_t)(unsafe.Pointer(Infos)), cgoAllocsUnknown
+	cDevice, _ := *(*C.xpumlDevice_t)(unsafe.Pointer(&Device)), cgoAllocsUnknown
+	cInfoCount, _ := (*C.uint)(unsafe.Pointer(InfoCount)), cgoAllocsUnknown
+	cInfos, _ := (*C.xpumlProcessInfo_t)(unsafe.Pointer(Infos)), cgoAllocsUnknown
 	__ret := C.xpumlDeviceGetComputeRunningProcesses(cDevice, cInfoCount, cInfos)
-	runtime.KeepAlive(cInfosAllocMap)
-	runtime.KeepAlive(cInfoCountAllocMap)
-	runtime.KeepAlive(cDeviceAllocMap)
 	__v := (Return)(__ret)
 	return __v
 }
 
 // xpumlDeviceGetArchitecture function as declared in xpuml/xpuml.h
 func xpumlDeviceGetArchitecture(Device Device, Arch *DeviceArchitecture) Return {
-	cDevice, cDeviceAllocMap := *(*C.xpumlDevice_t)(unsafe.Pointer(&Device)), cgoAllocsUnknown
-	cArch, cArchAllocMap := (*C.xpumlDeviceArchitecture_t)(unsafe.Pointer(Arch)), cgoAllocsUnknown
+	cDevice, _ := *(*C.xpumlDevice_t)(unsafe.Pointer(&Device)), cgoAllocsUnknown
+	cArch, _ := (*C.xpumlDeviceArchitecture_t)(unsafe.Pointer(Arch)), cgoAllocsUnknown
 	__ret := C.xpumlDeviceGetArchitecture(cDevice, cArch)
-	runtime.KeepAlive(cArchAllocMap)
-	runtime.KeepAlive(cDeviceAllocMap)
 	__v := (Return)(__ret)
 	return __v
 }
 
 // xpumlDeviceGetHostVxpuMode_v1 function as declared in xpuml/xpuml.h
 func xpumlDeviceGetHostVxpuMode_v1(Device Device, PHostVxpuMode *HostVxpuMode) Return {
-	cDevice, cDeviceAllocMap := *(*C.xpumlDevice_t)(unsafe.Pointer(&Device)), cgoAllocsUnknown
-	cPHostVxpuMode, cPHostVxpuModeAllocMap := (*C.xpumlHostVxpuMode_t)(unsafe.Pointer(PHostVxpuMode)), cgoAllocsUnknown
+	cDevice, _ := *(*C.xpumlDevice_t)(unsafe.Pointer(&Device)), cgoAllocsUnknown
+	cPHostVxpuMode, _ := (*C.xpumlHostVxpuMode_t)(unsafe.Pointer(PHostVxpuMode)), cgoAllocsUnknown
 	__ret := C.xpumlDeviceGetHostVxpuMode(cDevice, cPHostVxpuMode)
-	runtime.KeepAlive(cPHostVxpuModeAllocMap)
-	runtime.KeepAlive(cDeviceAllocMap)
 	__v := (Return)(__ret)
 	return __v
 }
 
 // xpumlDeviceSetSriovVfNum_v1 function as declared in xpuml/xpuml.h
 func xpumlDeviceSetSriovVfNum_v1(Device Device, VfNum int32) Return {
-	cDevice, cDeviceAllocMap := *(*C.xpumlDevice_t)(unsafe.Pointer(&Device)), cgoAllocsUnknown
-	cVfNum, cVfNumAllocMap := (C.int)(VfNum), cgoAllocsUnknown
+	cDevice, _ := *(*C.xpumlDevice_t)(unsafe.Pointer(&Device)), cgoAllocsUnknown
+	cVfNum, _ := (C.int)(VfNum), cgoAllocsUnknown
 	__ret := C.xpumlDeviceSetSriovVfNum(cDevice, cVfNum)
-	runtime.KeepAlive(cVfNumAllocMap)
-	runtime.KeepAlive(cDeviceAllocMap)
 	__v := (Return)(__ret)
 	return __v
 }

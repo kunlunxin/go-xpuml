@@ -26,7 +26,6 @@ package xpuml
 */
 import "C"
 import (
-	"fmt"
 	"sync"
 	"unsafe"
 )
@@ -61,8 +60,8 @@ func NewPciInfo() *PciInfo {
 // The caller is responsible for freeing the this memory via C.free.
 func allocPciInfoMemory(n int) unsafe.Pointer {
 	mem, err := C.calloc(C.size_t(n), (C.size_t)(sizeOfPciInfoValue))
-	if mem == nil {
-		panic(fmt.Sprintln("memory alloc error: ", err))
+	if err != nil {
+		panic("memory alloc error: " + err.Error())
 	}
 	return mem
 }
@@ -157,8 +156,8 @@ func NewUtilization() *Utilization {
 // The caller is responsible for freeing the this memory via C.free.
 func allocUtilizationMemory(n int) unsafe.Pointer {
 	mem, err := C.calloc(C.size_t(n), (C.size_t)(sizeOfUtilizationValue))
-	if mem == nil {
-		panic(fmt.Sprintln("memory alloc error: ", err))
+	if err != nil {
+		panic("memory alloc error: " + err.Error())
 	}
 	return mem
 }
@@ -203,8 +202,8 @@ func NewMemory() *Memory {
 // The caller is responsible for freeing the this memory via C.free.
 func allocMemoryMemory(n int) unsafe.Pointer {
 	mem, err := C.calloc(C.size_t(n), (C.size_t)(sizeOfMemoryValue))
-	if mem == nil {
-		panic(fmt.Sprintln("memory alloc error: ", err))
+	if err != nil {
+		panic("memory alloc error: " + err.Error())
 	}
 	return mem
 }
@@ -249,8 +248,8 @@ func NewBAR4Memory() *BAR4Memory {
 // The caller is responsible for freeing the this memory via C.free.
 func allocBAR4MemoryMemory(n int) unsafe.Pointer {
 	mem, err := C.calloc(C.size_t(n), (C.size_t)(sizeOfBAR4MemoryValue))
-	if mem == nil {
-		panic(fmt.Sprintln("memory alloc error: ", err))
+	if err != nil {
+		panic("memory alloc error: " + err.Error())
 	}
 	return mem
 }
@@ -295,8 +294,8 @@ func NewProcessInfo() *ProcessInfo {
 // The caller is responsible for freeing the this memory via C.free.
 func allocProcessInfoMemory(n int) unsafe.Pointer {
 	mem, err := C.calloc(C.size_t(n), (C.size_t)(sizeOfProcessInfoValue))
-	if mem == nil {
-		panic(fmt.Sprintln("memory alloc error: ", err))
+	if err != nil {
+		panic("memory alloc error: " + err.Error())
 	}
 	return mem
 }
@@ -341,8 +340,8 @@ func NewDeviceAttributes() *DeviceAttributes {
 // The caller is responsible for freeing the this memory via C.free.
 func allocDeviceAttributesMemory(n int) unsafe.Pointer {
 	mem, err := C.calloc(C.size_t(n), (C.size_t)(sizeOfDeviceAttributesValue))
-	if mem == nil {
-		panic(fmt.Sprintln("memory alloc error: ", err))
+	if err != nil {
+		panic("memory alloc error: " + err.Error())
 	}
 	return mem
 }
@@ -387,8 +386,8 @@ func NewSample() *Sample {
 // The caller is responsible for freeing the this memory via C.free.
 func allocSampleMemory(n int) unsafe.Pointer {
 	mem, err := C.calloc(C.size_t(n), (C.size_t)(sizeOfSampleValue))
-	if mem == nil {
-		panic(fmt.Sprintln("memory alloc error: ", err))
+	if err != nil {
+		panic("memory alloc error: " + err.Error())
 	}
 	return mem
 }
@@ -433,8 +432,8 @@ func NewViolationTime() *ViolationTime {
 // The caller is responsible for freeing the this memory via C.free.
 func allocViolationTimeMemory(n int) unsafe.Pointer {
 	mem, err := C.calloc(C.size_t(n), (C.size_t)(sizeOfViolationTimeValue))
-	if mem == nil {
-		panic(fmt.Sprintln("memory alloc error: ", err))
+	if err != nil {
+		panic("memory alloc error: " + err.Error())
 	}
 	return mem
 }
@@ -479,8 +478,8 @@ func NewProcessUtilizationSample() *ProcessUtilizationSample {
 // The caller is responsible for freeing the this memory via C.free.
 func allocProcessUtilizationSampleMemory(n int) unsafe.Pointer {
 	mem, err := C.calloc(C.size_t(n), (C.size_t)(sizeOfProcessUtilizationSampleValue))
-	if mem == nil {
-		panic(fmt.Sprintln("memory alloc error: ", err))
+	if err != nil {
+		panic("memory alloc error: " + err.Error())
 	}
 	return mem
 }
@@ -525,8 +524,8 @@ func NewFieldValue() *FieldValue {
 // The caller is responsible for freeing the this memory via C.free.
 func allocFieldValueMemory(n int) unsafe.Pointer {
 	mem, err := C.calloc(C.size_t(n), (C.size_t)(sizeOfFieldValueValue))
-	if mem == nil {
-		panic(fmt.Sprintln("memory alloc error: ", err))
+	if err != nil {
+		panic("memory alloc error: " + err.Error())
 	}
 	return mem
 }

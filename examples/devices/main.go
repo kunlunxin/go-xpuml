@@ -60,7 +60,25 @@ func main() {
 
 		fmt.Printf("utilization rates of device at index %d: %+v\n", i, utilization)
 
-        ProcessInfo, _:= device.GetComputeRunningProcesses()
+		clock, ret := device.GetClockInfo(xpuml.CLOCK_XPU)
+		if ret != xpuml.SUCCESS {
+			log.Fatalf("Unable to get xpu clock of device at index %d: %v", i, xpuml.ErrorString(ret))
+		}
+		fmt.Printf("xpu clock of device at index %d: %+v\n", i, clock)
+
+		temp, ret := device.GetTemperature(xpuml.TEMPERATURE_XPU)
+		if ret != xpuml.SUCCESS {
+			log.Fatalf("Unable to get xpu temperature of device at index %d: %v", i, xpuml.ErrorString(ret))
+		}
+		fmt.Printf("temperature of device at index %d: %+v\n", i, temp)
+
+		power, ret := device.GetPowerUsage()
+		if ret != xpuml.SUCCESS {
+			log.Fatalf("Unable to get xpu power usage of device at index %d: %v", i, xpuml.ErrorString(ret))
+		}
+		fmt.Printf("power usage of device at index %d: %+v\n", i, power)
+
+		ProcessInfo, _ := device.GetComputeRunningProcesses()
 		fmt.Printf("ProcessInfo of device %d: %+v\n", i, ProcessInfo)
 	}
 }

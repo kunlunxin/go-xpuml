@@ -74,9 +74,9 @@ func (Device Device) GetUtilizationRates() (Utilization, Return) {
 
 // xpuml.DeviceGetComputeRunningProcesses()
 func DeviceGetComputeRunningProcesses(Device Device) ([]ProcessInfo, Return) {
-	var Infos []ProcessInfo  // This is the v2 version of process info data structure
+	var Infos []ProcessInfo                         // This is the v2 version of process info data structure
 	var InfoCount uint32 = DEVICE_MAX_PROCESS_COUNT // Will be reduced upon returning
-	var ret Return           // Will be changed upon returning
+	var ret Return                                  // Will be changed upon returning
 	for {
 		Infos = make([]ProcessInfo, InfoCount)
 		ret = xpumlDeviceGetComputeRunningProcesses(Device, &InfoCount, &Infos[0]) // Call v2 version directly
@@ -117,4 +117,37 @@ func DeviceGetHostVxpuMode(Device Device) (HostVxpuMode, Return) {
 func DeviceSetSriovVfNum(Device Device, VfNum int32) Return {
 	ret := xpumlDeviceSetSriovVfNum(Device, VfNum)
 	return ret
+}
+
+// xpuml.DeviceGetClockInfo()
+func DeviceGetClockInfo(Device Device, _type ClockType) (uint32, Return) {
+	var Clock uint32
+	ret := xpumlDeviceGetClockInfo(Device, _type, &Clock)
+	return Clock, ret
+}
+
+func (Device Device) GetClockInfo(_type ClockType) (uint32, Return) {
+	return DeviceGetClockInfo(Device, _type)
+}
+
+// xpuml.DeviceGetTemperature()
+func DeviceGetTemperature(Device Device, SensorType TemperatureSensors) (uint32, Return) {
+	var Temp uint32
+	ret := xpumlDeviceGetTemperature(Device, SensorType, &Temp)
+	return Temp, ret
+}
+
+func (Device Device) GetTemperature(SensorType TemperatureSensors) (uint32, Return) {
+	return DeviceGetTemperature(Device, SensorType)
+}
+
+// xpuml.DeviceGetPowerUsage()
+func DeviceGetPowerUsage(Device Device) (uint32, Return) {
+	var Power uint32
+	ret := xpumlDeviceGetPowerUsage(Device, &Power)
+	return Power, ret
+}
+
+func (Device Device) GetPowerUsage() (uint32, Return) {
+	return DeviceGetPowerUsage(Device)
 }
