@@ -49,7 +49,9 @@ type ProcessInfo struct {
 	Pid              uint32
 	UsedGlobalMemory uint64
 	UsedL3Memory     uint64
-	Reserved         [13]uint64
+	Root_ns_pid      uint32
+	Reserved_u32     uint32
+	Reserved         [12]uint64
 }
 
 type DeviceAttributes struct {
@@ -65,7 +67,8 @@ type DeviceAttributes struct {
 	MaxVFCount         uint32
 	GlobalMemorySizeMB uint64
 	L3MemorySizeMB     uint64
-	Reserved           [9]uint64
+	Sn                 [2]uint64
+	Reserved           [7]uint64
 }
 
 const sizeofValue = unsafe.Sizeof([8]byte{})

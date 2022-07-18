@@ -76,7 +76,7 @@ const (
 	// DEVICE_NAME_BUFFER_SIZE as defined in xpuml/xpuml.h
 	DEVICE_NAME_BUFFER_SIZE = 96
 	// DEVICE_SERIAL_BUFFER_SIZE as defined in xpuml/xpuml.h
-	DEVICE_SERIAL_BUFFER_SIZE = 30
+	DEVICE_SERIAL_BUFFER_SIZE = 17
 	// DEVICE_MAX_PROCESS_COUNT as defined in xpuml/xpuml.h
 	DEVICE_MAX_PROCESS_COUNT = 100
 )

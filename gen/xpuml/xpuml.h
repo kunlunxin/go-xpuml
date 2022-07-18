@@ -141,7 +141,9 @@ typedef struct xpumlProcessInfo_st
                                             //! Under WDDM, \ref XPUML_VALUE_NOT_AVAILABLE is always reported
                                             //! because Windows KMD manages all the memory and not the KUNLUN driver
 
-    unsigned long long reserved[13];        //!< Reserved, sizeof() = 8B * 16
+    unsigned int        root_ns_pid;        //!< root namespace PID
+    unsigned int        reserved_u32;       //!< Reserved
+    unsigned long long  reserved[12];       //!< Reserved
 } xpumlProcessInfo_t;
 
 typedef struct xpumlDeviceAttributes_st
@@ -159,7 +161,9 @@ typedef struct xpumlDeviceAttributes_st
     unsigned long long globalMemorySizeMB;  //!< Device global memory size (in MiB)
     unsigned long long l3MemorySizeMB;      //!< Device l3 memory size (in MiB)
 
-    unsigned long long reserved[9];         //!< Reserved, sizeof() = 8B * 16
+    unsigned long long sn[2];               //!< Serial Number
+
+    unsigned long long reserved[7];         //!< Reserved
 } xpumlDeviceAttributes_t;
 
 /**
@@ -780,7 +784,7 @@ const DECLDIR char* xpumlErrorString(xpumlReturn_t result);
 /**
  * Buffer size guaranteed to be large enough for \ref xpumlDeviceGetSerial
  */
-#define XPUML_DEVICE_SERIAL_BUFFER_SIZE                30
+#define XPUML_DEVICE_SERIAL_BUFFER_SIZE                (16 + 1)
 
 /** @} */
 
@@ -1147,7 +1151,7 @@ xpumlReturn_t DECLDIR xpumlDeviceGetHandleByIndex(unsigned int index, xpumlDevic
  *         - \ref XPUML_ERROR_XPU_IS_LOST       if the target XPU has fallen off the bus or is otherwise inaccessible
  *         - \ref XPUML_ERROR_UNKNOWN           on any unexpected error
  */
-//xpumlReturn_t DECLDIR xpumlDeviceGetSerial(xpumlDevice_t device, char *serial, unsigned int length);
+xpumlReturn_t DECLDIR xpumlDeviceGetSerial(xpumlDevice_t device, char *serial, unsigned int length);
 
 /**
  * Retrieve the status for a given p2p capability index between a given pair of XPU

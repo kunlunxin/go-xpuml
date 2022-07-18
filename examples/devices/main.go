@@ -46,6 +46,20 @@ func main() {
 			log.Fatalf("Unable to get device at index %d: %v", i, xpuml.ErrorString(ret))
 		}
 
+		serial, ret := device.GetSerial()
+		if ret != xpuml.SUCCESS {
+			log.Fatalf("Unable to get serial of device at index %d: %v", i, xpuml.ErrorString(ret))
+		}
+
+		fmt.Printf("Serial of device at index %d: %+v\n", i, serial)
+
+		devAttr, ret := device.GetAttributes()
+		if ret != xpuml.SUCCESS {
+			log.Fatalf("Unable to get attributes of device at index %d: %v", i, xpuml.ErrorString(ret))
+		}
+
+		fmt.Printf("Attributes of device at index %d: %+v\n", i, devAttr)
+
 		mem_info, ret := device.GetMemoryInfo()
 		if ret != xpuml.SUCCESS {
 			log.Fatalf("Unable to get memory info of device at index %d: %v", i, xpuml.ErrorString(ret))

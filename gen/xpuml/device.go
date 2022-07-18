@@ -61,6 +61,17 @@ func (Device Device) GetBoardId() (uint32, Return) {
 	return DeviceGetBoardId(Device)
 }
 
+// xpuml.DeviceGetSerial()
+func DeviceGetSerial(Device Device) (string, Return) {
+	Serial := make([]byte, DEVICE_SERIAL_BUFFER_SIZE)
+	ret := xpumlDeviceGetSerial(Device, &Serial[0], DEVICE_SERIAL_BUFFER_SIZE)
+	return string(Serial[:clen(Serial)]), ret
+}
+
+func (Device Device) GetSerial() (string, Return) {
+	return DeviceGetSerial(Device)
+}
+
 // xpuml.DeviceGetUtilizationRates()
 func DeviceGetUtilizationRates(Device Device) (Utilization, Return) {
 	var Utilization Utilization

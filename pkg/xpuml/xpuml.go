@@ -93,6 +93,16 @@ func xpumlDeviceGetHandleByIndex_v1(Index uint32, Device *Device) Return {
 	return __v
 }
 
+// xpumlDeviceGetSerial function as declared in xpuml/xpuml.h
+func xpumlDeviceGetSerial(Device Device, Serial *byte, Length uint32) Return {
+	cDevice, _ := *(*C.xpumlDevice_t)(unsafe.Pointer(&Device)), cgoAllocsUnknown
+	cSerial, _ := (*C.char)(unsafe.Pointer(Serial)), cgoAllocsUnknown
+	cLength, _ := (C.uint)(Length), cgoAllocsUnknown
+	__ret := C.xpumlDeviceGetSerial(cDevice, cSerial, cLength)
+	__v := (Return)(__ret)
+	return __v
+}
+
 // xpumlDeviceGetPciInfo_v1 function as declared in xpuml/xpuml.h
 func xpumlDeviceGetPciInfo_v1(Device Device, Pci *PciInfo) Return {
 	cDevice, _ := *(*C.xpumlDevice_t)(unsafe.Pointer(&Device)), cgoAllocsUnknown
